@@ -12,18 +12,23 @@
           </p>
 
           <ul class="error-messages">
-            <li>That email is already taken</li>
+            <template v-for="(messages, field) in errors">
+              <li v-for="(message, index) in messages" :key="index">
+                {{field}} {{message }}
+              </li>
+            </template>
+            <!-- <li>That email is already taken</li> -->
           </ul>
 
           <form @submit.prevent="onSubmit">
             <fieldset v-show="!isLogin" class="form-group">
-              <input v-model="user.name" class="form-control form-control-lg" type="text" placeholder="Your Name">
+              <input v-model="user.username" class="form-control form-control-lg" type="text" placeholder="Your Name">
             </fieldset>
             <fieldset class="form-group">
-              <input v-model="user.email" class="form-control form-control-lg" type="text" placeholder="Email">
+              <input v-model="user.email" class="form-control form-control-lg" type="email" placeholder="Email">
             </fieldset>
             <fieldset class="form-group">
-              <input v-model="user.password" class="form-control form-control-lg" type="password" placeholder="Password">
+              <input v-model="user.password" class="form-control form-control-lg" type="password" minlength="6" placeholder="Password">
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">
               {{ isLogin?'Sign in':'Sign up' }}
@@ -37,15 +42,19 @@
 </template>
 
 <script>
-import { login } from "@/api/user";
+import { login, register } from "@/api/user";
+const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   name: "LoginPage",
-  data: {
-    user: {
-      name: "",
-      email: "",
-      password: "",
-    },
+  data() {
+    return {
+      user: {
+        username: "",
+        email: "",
+        password: "",
+      },
+      errors: {},
+    };
   },
   computed: {
     isLogin() {
@@ -54,8 +63,16 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const { data } = await login(this.data);
-      console.log('data', data)
+      try {
+        const { data } = this.isLogin
+          ? await login({ user: this.user })
+          : await register({ user: this.user });
+        this.$store.commit("setUser", data.user);
+        Cookie.set('user', JSON.stringify(data.user))
+        this.$router.push("/");
+      } catch (error) {
+        this.errors = error.response.data.errors;
+      }
     },
   },
 };
