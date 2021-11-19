@@ -124,7 +124,8 @@
 
 <script>
 export default {
-  name: 'ArticlePage'
+  name: 'ArticlePage',
+  middleware: 'authenticated'
 }
 </script>
 

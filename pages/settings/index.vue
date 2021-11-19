@@ -38,7 +38,8 @@
 
 <script>
 export default {
-  name: 'SettingsPage'
+  name: 'SettingsPage',
+  middleware: 'authenticated'
 }
 </script>
 

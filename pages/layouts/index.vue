@@ -21,6 +21,17 @@
                 <i class="ion-gear-a"></i>&nbsp;Settings
               </nuxt-link>
             </li>
+            <li class="nav-item">
+              <nuxt-link class="nav-link" :to="{
+                name: '/',
+                params: {
+                  username: user.username
+                }
+              }">
+                <img class="user-pic" ng-src="">
+                  {{ user.username }}
+              </nuxt-link>
+            </li>
           </template>
           <template v-else>
             <li class="nav-item">
