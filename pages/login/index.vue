@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     isLogin() {
-      return this.$route.name === "LoginPage";
+      return this.$route.name === "login";
     },
   },
   methods: {
