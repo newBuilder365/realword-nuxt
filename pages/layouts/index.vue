@@ -9,7 +9,7 @@
             <li class="nav-item">
               <!-- Add "active" class when you're on that page" -->
               <!-- <a class="nav-link active" href="">Home</a> -->
-              <nuxt-link to='/' class="nav-link" exact>Home</nuxt-link>
+              <nuxt-link to='' class="nav-link" exact>Home</nuxt-link>
             </li>
             <li class="nav-item">
               <nuxt-link to='/article/123' class="nav-link">
@@ -28,8 +28,8 @@
                   username: user.username
                 }
               }">
-                <img class="user-pic" ng-src="">
-                  {{ user.username }}
+                <img class="user-pic" :src="user.image">
+                {{ user.username }}
               </nuxt-link>
             </li>
           </template>
