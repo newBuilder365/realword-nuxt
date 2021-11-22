@@ -48,10 +48,20 @@ const getArticleBySlug = (slug) => {
   })
 }
 
+//创建新文章
+const createArticle = data => {
+  return request({
+    method: 'POST',
+    url: '/api/articles',
+    data
+  })
+}
+
 export {
   getArticles,
   getFeedArticles,
   onFavorites,
   unFavorites,
-  getArticleBySlug
+  getArticleBySlug,
+  createArticle
 }

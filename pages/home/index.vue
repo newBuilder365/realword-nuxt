@@ -14,7 +14,7 @@
         <div class="col-md-9">
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
+              <li class="nav-item" v-if="user">
                 <nuxt-link exact class="nav-link" :class="{
                   active: tab === 'your_feed'
                 }" :to="{
@@ -69,10 +69,7 @@
                 </nuxt-link>
                 <span class="date">{{ article.createdAt | date("MMM DD,YYYY") }}</span>
               </div>
-              <button @click="handleFavorites(article)" 
-                class="btn btn-outline-primary btn-sm pull-xs-right" 
-                :disabled="article.favoriteDisabled"
-                :class="{
+              <button @click="handleFavorites(article)" class="btn btn-outline-primary btn-sm pull-xs-right" :disabled="article.favoriteDisabled" :class="{
                 active: article.favorited
               }">
                 <i class="ion-heart"></i> {{ article.favoritesCount }}
@@ -141,6 +138,7 @@ import {
   unFavorites,
 } from "@/api/article";
 import { getTags } from "@/api/tags";
+import { mapState } from 'vuex'
 export default {
   name: "HomePage",
   watchQuery: ["page", "tag", "tab"],
@@ -159,7 +157,7 @@ export default {
     ]);
     const { articles, articlesCount } = articleRes.data;
     const { tags } = tagRes.data;
-    articles.forEach(article => article.favoriteDisabled = false)
+    articles.forEach((article) => (article.favoriteDisabled = false));
     return {
       articles,
       articlesCount,
@@ -172,13 +170,14 @@ export default {
     };
   },
   computed: {
+    ...mapState(['user']),
     totalPage() {
       return Math.ceil(this.articlesCount / this.limit);
-    },
+    }
   },
   methods: {
     async handleFavorites(article) {
-      article.favoriteDisabled = true
+      article.favoriteDisabled = true;
       if (article.favorited) {
         await unFavorites({ slug: article.slug });
         article.favorited = false;
@@ -188,7 +187,7 @@ export default {
         article.favorited = true;
         article.favoritesCount++;
       }
-      article.favoriteDisabled = false
+      article.favoriteDisabled = false;
     },
   },
 };

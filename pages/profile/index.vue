@@ -7,7 +7,7 @@
 
           <div class="col-xs-12 col-md-10 offset-md-1">
             <img src="http://i.imgur.com/Qr71crq.jpg" class="user-img" />
-            <h4>Eric Simons</h4>
+            <h4>{{ user.username }}</h4>
             <p>
               Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the
               Hunger Games
@@ -42,7 +42,7 @@
             <div class="article-meta">
               <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
               <div class="info">
-                <a href="" class="author">Eric Simons</a>
+                <a href="" class="author">{{ user.username }}</a>
                 <span class="date">January 20th</span>
               </div>
               <button class="btn btn-outline-primary btn-sm pull-xs-right">
@@ -87,9 +87,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'ProfilePage',
-  middleware: 'authenticated'
+  middleware: 'authenticated',
+  computed:{
+    ...mapState(['user'])
+  }
 }
 </script>
 

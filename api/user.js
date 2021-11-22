@@ -11,7 +11,6 @@ const login = (data) => {
 
 // 注册
 const register = (data) => {
-  debugger;
   return request({
     method: 'POST',
     url: '/api/users',
@@ -19,7 +18,26 @@ const register = (data) => {
   })
 }
 
+//获取用户信息
+const getUser = () => {
+  return request({
+    method: 'GET',
+    url: '/api/user'
+  })
+}
+
+//更新用户信息
+const updateUser = (data) => {
+  return request({
+    method: 'PUT',
+    url: '/api/user',
+    data 
+  })
+}
+
 export {
   login,
-  register
+  register,
+  getUser,
+  updateUser
 }

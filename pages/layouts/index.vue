@@ -9,10 +9,10 @@
             <li class="nav-item">
               <!-- Add "active" class when you're on that page" -->
               <!-- <a class="nav-link active" href="">Home</a> -->
-              <nuxt-link to='' class="nav-link" exact>Home</nuxt-link>
+              <nuxt-link to='/' class="nav-link" exact>Home</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link to='/article/123' class="nav-link">
+              <nuxt-link to='/editor' class="nav-link">
                 <i class="ion-compose"></i>&nbsp;New Article
               </nuxt-link>
             </li>
@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item">
               <nuxt-link class="nav-link" :to="{
-                name: '/',
+                name: 'profile',
                 params: {
                   username: user.username
                 }
