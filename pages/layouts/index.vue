@@ -52,7 +52,7 @@
     <footer>
       <div class="container">
         <!-- <a href="/" class="logo-font">conduit</a> -->
-        <nuxt-link to="/" class="logo-font">自动化部署测试</nuxt-link>
+        <nuxt-link to="/" class="logo-font">自动化部署测试最终</nuxt-link>
         <span class="attribution">
           An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed under MIT.
         </span>
