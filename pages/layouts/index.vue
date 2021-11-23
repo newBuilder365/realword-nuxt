@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light">
       <div class="container">
         <!-- <a class="navbar-brand" href="index.html">conduit</a> -->
-        <nuxt-link to='/'>conduit</nuxt-link>
+        <nuxt-link to='/'>conduit1</nuxt-link>
         <ul class="nav navbar-nav pull-xs-right">
           <template v-if="user">
             <li class="nav-item">
