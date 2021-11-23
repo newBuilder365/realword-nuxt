@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light">
       <div class="container">
         <!-- <a class="navbar-brand" href="index.html">conduit</a> -->
-        <nuxt-link to='/'>自动化部署</nuxt-link>
+        <nuxt-link to='/'>conduit</nuxt-link>
         <ul class="nav navbar-nav pull-xs-right">
           <template v-if="user">
             <li class="nav-item">
@@ -52,7 +52,7 @@
     <footer>
       <div class="container">
         <!-- <a href="/" class="logo-font">conduit</a> -->
-        <nuxt-link to="/" class="logo-font">conduit</nuxt-link>
+        <nuxt-link to="/" class="logo-font">自动化部署</nuxt-link>
         <span class="attribution">
           An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed under MIT.
         </span>
